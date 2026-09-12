@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ShopSphere - E-Commerce Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🛍️ ShopSphere
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                id="themeBtn"
+                class="icon-btn"
+                title="Toggle theme"
+            >
+                🌙
+            </button>
+
+            <button
+                id="wishlistBtn"
+                class="icon-btn"
+                title="Wishlist"
+            >
+                ❤️
+                <span id="wishlistCount">0</span>
+            </button>
+
+            <button
+                id="cartBtn"
+                class="icon-btn"
+                title="Cart"
+            >
+                🛒
+                <span id="cartCount">0</span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Welcome to ShopSphere
+        </h1>
+
+        <p>
+            Find everything you need in one place.
+        </p>
+
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <section class="filters">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+        >
+
+        <select id="categoryFilter">
+
+            <option value="all">
+                All Categories
+            </option>
+
+        </select>
+
+        <select id="sortFilter">
+
+            <option value="default">
+                Sort By
+            </option>
+
+            <option value="price-low">
+                Price: Low to High
+            </option>
+
+            <option value="price-high">
+                Price: High to Low
+            </option>
+
+            <option value="rating">
+                Rating
+            </option>
+
+            <option value="name">
+                Name A-Z
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <main class="main-content">
+
+        <div class="products-header">
+
+            <h2>
+                Products
+            </h2>
+
+            <span id="productResult">
+                Loading products...
+            </span>
+
+        </div>
+
+        <div
+            id="products"
+            class="products"
+        ></div>
+
+    </main>
+
+
+    <!-- CART SIDEBAR -->
+
+    <aside
+        id="cartSidebar"
+        class="cart-sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <h2>
+                🛒 Your Cart
+            </h2>
+
+            <button id="closeCart">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="cartItems"
+            class="cart-items"
+        ></div>
+
+
+        <div class="cart-summary">
+
+            <h3>
+                Order Summary
+            </h3>
+
+
+            <div class="coupon">
+
+                <input
+                    type="text"
+                    id="couponInput"
+                    placeholder="Coupon code"
+                >
+
+                <button id="couponBtn">
+                    Apply
+                </button>
+
+            </div>
+
+
+            <div
+                id="couponMessage"
+                class="coupon-message"
+            ></div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span id="subtotal">
+                    $0.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Discount
+                </span>
+
+                <span id="discount">
+                    -$0.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Shipping
+                </span>
+
+                <span id="shipping">
+                    $0.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="grandTotal">
+                    $0.00
+                </span>
+
+            </div>
+
+
+            <button
+                id="checkoutBtn"
+                class="checkout-btn"
+            >
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- WISHLIST SIDEBAR -->
+
+    <aside
+        id="wishlistSidebar"
+        class="cart-sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <h2>
+                ♡ Wishlist
+            </h2>
+
+            <button id="closeWishlist">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="wishlistItems"
+            class="cart-items"
+        ></div>
+
+    </aside>
+
+
+    <!-- OVERLAY -->
+
+    <div
+        id="overlay"
+        class="overlay"
+    ></div>
+
+
+    <!-- PRODUCT MODAL -->
+
+    <div
+        id="productModal"
+        class="modal"
+    >
+
+        <div class="modal-content product-modal-content">
+
+            <button
+                id="closeProductModal"
+                class="modal-close"
+            >
+                ×
+            </button>
+
+            <img
+                id="detailImage"
+                class="detail-image"
+                src=""
+                alt=""
+            >
+
+            <div class="detail-info">
+
+                <p
+                    id="detailCategory"
+                    class="product-category"
+                ></p>
+
+                <h2 id="detailName"></h2>
+
+                <div
+                    id="detailRating"
+                    class="rating"
+                ></div>
+
+                <h3 id="detailPrice"></h3>
+
+                <p id="detailStock"></p>
+
+                <p id="detailDescription"></p>
+
+                <button
+                    id="detailAddToCart"
+                    class="add-btn"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHECKOUT MODAL -->
+
+    <div
+        id="checkoutModal"
+        class="modal"
+    >
+
+        <div class="modal-content checkout-content">
+
+            <button
+                id="closeCheckout"
+                class="modal-close"
+            >
+                ×
+            </button>
+
+            <h2>
+                Checkout
+            </h2>
+
+            <form id="checkoutForm">
+
+                <input
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                >
+
+                <input
+                    type="text"
+                    placeholder="Address"
+                    required
+                >
+
+                <input
+                    type="text"
+                    placeholder="City"
+                    required
+                >
+
+                <input
+                    type="text"
+                    placeholder="PIN Code"
+                    required
+                >
+
+                <select id="paymentMethod" required>
+
+                    <option value="">Select Payment</option>
+
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+
+                    <option value="Card">Credit/Debit Card</option>
+                    
+                </select>
+
+                <button
+                    type="submit"
+                    class="checkout-btn"
+                >
+                    Place Order
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUCCESS MODAL -->
+
+    <div
+        id="successModal"
+        class="modal"
+    >
+
+        <div class="modal-content success-content">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Order Placed Successfully!
+            </h2>
+
+            <p>
+                Your order ID is:
+            </p>
+
+            <strong id="orderId"></strong>
+
+            <button
+                id="continueShopping"
+                class="checkout-btn"
+            >
+                Continue Shopping
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
